@@ -1,0 +1,200 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <title>Hello, world!</title>
+    <link rel="stylesheet" href="{% static 'css/mainstyles.css' %}">
+</head>
+
+<body>
+
+    <div class="main">
+        <h1>Welcome {{request.user}} 
+            <small><a href="{% url 'logout' %}">Logout</a></small>
+        </h1>
+        <hr>
+        <h4>
+            Total Books: {{bookscount}}
+            <a href="{% url 'books' %}">See All the Books</a>
+        </h4>
+
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Authors</th>
+                <th>Category</th>
+                <th>Num Copies</th>
+            </tr>
+
+            {% for b in books %}
+            <tr>
+                <td>{{b.title}}</td>
+                <td>
+                    {% for a in b.author.all %}
+                    {{a}}<br>
+                    {% endfor %}
+                </td>
+                <td>{{b.category}}</td>
+                <td>{{b.num_copies}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+
+        <hr>
+        <h4>
+            Total Issues: {{issuescount}}
+            <p>Pending: {{pending}}, Issued (Not Returned): {{issued}}, Returned : {{returned}}</p>
+        </h4>
+        <table>
+            <tr>
+                <th>Student</th>
+                <th>Book</th>
+                <th>Date_Issue</th>
+                <th>Status</th>
+            </tr>
+
+            {% for i in issues %}
+            <tr>
+                <td>{{i.user.username}}<br>(Email: {{i.user.email}})</td>
+                <td>{{i.book.title}}</td>
+                <td>{{i.date_of_issue}}</td>
+                <td>{{i.status}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        <hr>
+        <h4>Total Students: {{studentscount}}</h4>
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Email Address</th>
+                <th>Phone</th>
+                <th>Card Issued On</th>
+                <th>Options</th>
+            </tr>
+
+            {% for s in students %}
+            <tr>
+                <td style="display:flex; align-items: center;">
+                    <img src="{% static s.profile_pic.url %}" alt="{{s.id}}" height="60">
+                    <div style="padding: 5px 10px; width: calc(100% - 60px);  ">
+                        {{s.user.username}}</div>
+                </td>
+                <td>{{s.user.email}}</td>
+                <td>{{s.phone}}</td>
+                <td>{{s.date_created}}</td>
+                <td>
+                    <a href="{% url 'student' s.id %}">View Student</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+</body>
+
+</html>
+
+
+
+
+
+<!-- <style>
+    @import url('https://fonts.googleapis.com/css2?family=Balthazar&family=Hanuman&display=swap');
+    *{
+        font-family: 'Balthazar','Hanuman', serif;
+        font-size: 1.1rem;
+    }
+    
+    table,
+    th,
+    td {
+        border: 1px solid black;
+        border-collapse: collapse;
+        padding: 10px;
+    }
+</style>
+
+<h1>Welcome {{request.user}}  <a href="{% url 'logout' %}">Logout</a></h1>
+<hr>
+<h4>
+    Total Books: {{bookscount}}
+    <a href="{% url 'books' %}">See All the Books</a>
+</h4>
+
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Authors</th>
+        <th>Category</th>
+        <th>Num Copies</th>
+    </tr>
+
+    {% for b in books %}
+    <tr>
+        <td>{{b.title}}</td>
+        <td>
+            {% for a in b.author.all %}
+              {{a}}<br>
+            {% endfor %}
+        </td>
+        <td>{{b.category}}</td>
+        <td>{{b.num_copies}}</td>
+    </tr>
+    {% endfor %}
+</table>
+<hr>
+<h4>
+    Total Issues: {{issuescount}}
+    <p>Pending: {{pending}}, Issued (Not Returned): {{issued}}, Returned : {{returned}}</p>
+</h4>
+<table>
+    <tr>
+        <th>Student</th>
+        <th>Book</th>
+        <th>Date_Issue</th>
+        <th>Status</th>
+    </tr>
+
+    {% for i in issues %}
+    <tr>
+        <td>{{i.user.username}}<br>(Email: {{i.user.email}})</td>
+        <td>{{i.book.title}}</td>
+        <td>{{i.date_of_issue}}</td>
+        <td>{{i.status}}</td>
+    </tr>
+    {% endfor %}
+</table>
+<hr>
+<h4>Total Students: {{studentscount}}</h4>
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Email Address</th>
+        <th>Phone</th>
+        <th>Profile_Pic</th>
+        <th>Card Issued On</th>
+        <th>Options</th>
+    </tr>
+
+    {% for s in students %}
+    <tr>
+        <td>{{s.user.username}}</td>
+        <td>{{s.user.email}}</td>
+        <td>{{s.phone}}</td>
+        <td>{{s.profile_pic.url}}</td>
+        <td>{{s.date_created}}</td>
+        <td>
+            <a href="{% url 'student' s.id %}">View Student</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table> -->

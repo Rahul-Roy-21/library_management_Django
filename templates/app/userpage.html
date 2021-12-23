@@ -1,0 +1,45 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/mainstyles.css' %}">
+
+<img src="{{studentProfile.profile_pic.url}}" alt="" style="height:70px; border-radius: 50%;">
+<h1>Hello {{request.user}}</h1>
+<h3>USERNAME: {{request.user.username}}</h3>
+<h3>EMAIL: {{request.user.email}}</h3>
+<h3>PHONE: {{studentProfile.phone}}</h3>
+<h3>
+    
+    <button>
+        <a href="{% url 'create_issue' studentProfile.id %}">Issue a Book</a>
+    </button>
+    <button>
+        <a href="{% url 'profile' studentProfile.id %}">Update Student-Profile</a>
+    </button>
+    <button>
+        <a href="{% url 'logout' %}">Logout</a>
+    </button>
+</h3>
+<hr>
+
+<h2>My Issues</h2><hr>
+<h4>Books Waiting for Issues: {{pending}}</h4>
+<h4>Issued and to be Returned: {{issued}}</h4>
+<h4>Returned by Students: {{returned}}</h4>
+<h4>Total Issues: {{issuescount}}</h4><br>
+<table>
+    <tr>
+        <th>Student</th>
+        <th>Book</th>
+        <th>Date_Issue</th>
+        <th>Status</th>
+    </tr>
+
+    {% for i in issues %}
+    <tr>
+        <td>{{i.user.username}}<br>(Email: {{i.user.email}})</td>
+        <td>{{i.book.title}}</td>
+        <td>{{i.date_of_issue}}</td>
+        <td>{{i.status}}</td>
+    </tr>
+    {% endfor %}
+</table>
+<hr>

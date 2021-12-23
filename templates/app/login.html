@@ -1,0 +1,58 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="{% static 'css/loginstyle.css' %}">
+</head>
+
+<body>
+    <div class="container">
+        <img id="login-img" src="{% static 'images/design_imgs/loginuser.png' %}" alt="">
+        <div class="title">Login Portal</div>
+        <hr>
+        <form action="" method="post">
+            {% csrf_token %}
+            <div class="user-details">
+                <div class="input-box">
+                    <span class="details">Username</span>
+                    <input type="text" name="username" placeholder="Enter Your Username" required>
+                </div>
+                <div class="input-box">
+                    <span class="details">Password</span>
+                    <input type="password" name="password" placeholder="Enter Your Unique Password" required>
+                </div>
+            </div>
+
+            {% if messages %}
+            <div class="error-box">
+                {% for message in messages %}
+                <h4 class="alert alert-{{ message.tags }}">
+                    {{message}}
+                    {% if message.tags == 'success' %}
+                    <i class="fas fa-thumbs-up"></i>
+                </h4>
+                {% endif %}
+                {% endfor %}
+            </div>
+            {% endif %}
+
+            <div class="button">
+                <input type="submit" value="Verify and Login">
+            </div>
+            <div class="links">
+                <h4>Don't have an account? Signup <a href="{% url 'register' %}">here..</a></h4>
+            </div>
+        </form>
+    </div>
+
+
+</body>
+
+</html>

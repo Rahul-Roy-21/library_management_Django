@@ -1,0 +1,50 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/mainstyles.css' %}">
+
+<div class="card card-body" style="display: flex;align-items: center;">
+    <h2>Student : {{student.user.username}}</h2>
+    <img src="{% static student.profile_pic.url %}" alt="" height="60">
+</div>
+<small><a href="{% url 'home' %}">Go Back</a></small>
+<hr>
+
+<div class="card card-body">
+    <h2>Contact Information</h2>
+    <p>Email: {{student.user.email}}</p>
+    <p>Phone: {{student.phone}}</p>
+    <p>Total Issues: {{issue_count}} </p>
+</div>
+<hr>
+<div class="card card-body">
+    <form method="get">
+        {{myFilter.form.as_p}}
+
+        <button class="btn btn-primary" type="submit">Search</button>
+    </form>
+</div>
+<hr>
+<h2>--- ISSUES Done through Library Card ---</h2>
+<table>
+    <tr>
+        <th>Student</th>
+        <th>Book</th>
+        <th>Date_Issue</th>
+        <th>Status</th>
+        <th>Update Issue</th>
+        <th>Delete Issue</th>
+    </tr>
+
+    {% for i in issues %}
+    <tr>
+        <td>{{i.user.username}}<br>(Email: {{i.user.email}})</td>
+        <td>{{i.book.title}}</td>
+        <td>{{i.date_of_issue}}</td>
+        <td>{{i.status}}</td>
+        <td><a class="btn btn-sm btn-info" href="{% url 'update_issue' i.id %}">Update</a></td>
+
+        <td><a class="btn btn-sm btn-danger" href="{% url 'delete_issue' i.id %}">Delete</a></td>
+    </tr>
+    {% empty %}
+    <td>NO DATA FOUND !!</td>
+    {% endfor %}
+</table>

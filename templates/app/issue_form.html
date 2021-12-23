@@ -1,0 +1,29 @@
+<div class="card card-body">
+    <h2>Student Name: {{student.user.username}}</h2>
+    <p>Email: {{student.user.email}}</p>
+    <p>Phone: {{student.phone}}</p>
+    <p>Total Issues: {{student.user.issue_set.count}} </p>
+	
+	<h5><a href="{% url 'user-page' %}">Go Back</a></h5>
+</div>
+<br>
+<h2>ISSUE ATMOST 6 BOOKS below ~~~</h2>
+<hr>
+<div class="row">
+	<div class="col-md-6">
+		<div class="card card-body">
+
+			<form action="" method="POST">
+				{% csrf_token %}
+				{{ form.management_form }}
+				{% for field in form %}
+					{{field}}
+					<hr>
+				{% endfor %}
+				
+				<input type="submit" name="Submit">
+			</form>
+
+		</div>
+	</div>
+</div>

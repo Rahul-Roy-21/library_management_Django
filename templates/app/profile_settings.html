@@ -1,0 +1,13 @@
+<img src="{{request.user.studentprofile_set.first.profile_pic.url}}" alt="" style="height:70px; border-radius: 50%;">
+<h1>Hello {{request.user}}</h1>
+<h3>USERNAME: {{request.user.username}}</h3>
+<h3>EMAIL: {{request.user.email}}</h3>
+<h5><a href="{% url 'user-page' %}">Go Back</a></h5>
+<hr>
+
+<form method="POST" action="" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{form.as_p}}
+
+    <input type="submit" name="Update Profile">
+</form>

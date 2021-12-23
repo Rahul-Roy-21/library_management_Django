@@ -1,0 +1,84 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+        integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/loginstyle.css' %}">
+</head>
+
+<body>
+    <div class="container">
+        <img src="{% static 'images/design_imgs/user2.jpg' %}" alt="">
+        <div class="title">Student Registration</div>
+        <hr>
+
+        {% if messages %}
+        <div class="error-box">
+            {% for message in messages %}
+            <h4 class="alert alert-{{ message.tags }}" role="alert">{{message}}</h4>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        {% if form.errors %}
+        <div class="error-box">
+            {% for field in form %}
+            {% for e in field.errors %}
+                <div class="alert alert-danger">{{field.label}} - {{e}} <i class="fas fa-exclamation-circle"></i></div>
+            {% endfor %}
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        <form action="" method="post">
+            {% csrf_token %}
+            <div class="user-details">
+                <div class="input-box">
+                    <span class="details">First Name</span>
+                    {{form.first_name}}
+                </div>
+                <div class="input-box">
+                    <span class="details">SurName</span>
+                    {{form.last_name}}
+                </div>
+                <div class="input-box">
+                    <span class="details">Username</span>
+                    {{form.username}}
+                </div>
+                <div class="input-box">
+                    <span class="details">
+                        Email
+                        <small>(V.V.Imp. user verifications)</small>
+                    </span>
+                    {{form.email}}
+                </div>
+                <div class="input-box">
+                    <span class="details">
+                        Password
+                        <small>(Min. 9 Characters)</small>
+                    </span>
+                    {{form.password1}}
+                </div>
+                <div class="input-box">
+                    <span class="details">Confirm Password</span>
+                    {{form.password2}}
+                </div>
+            </div>
+
+            <div class="button">
+                <input type="submit" value="Register">
+            </div>
+            <div class="links">
+                <h4>Already Have an Account? Login <a href="{% url 'login' %}">Here</a></h4>
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>

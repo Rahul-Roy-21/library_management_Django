@@ -1,0 +1,167 @@
+@import url('https://fonts.googleapis.com/css2?family=Balthazar&family=Hanuman&family=Poppins&display=swap');
+
+:root {
+    --themecol: rgb(255, 145, 0);
+    --secondarycol: rgb(255, 115, 1);
+    --success: green;
+    --danger: red;
+    --bgcolor_container: aliceblue;
+    --normal_border: #bbb;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins','Balthazar',sans-serif;
+    
+}
+body{
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    background: url('../images/design_imgs/lib.jpg');
+    background-repeat:repeat-x;
+    background-size: cover;
+}
+.container{
+    max-width: 700px;
+    width: 90%;
+    background-color: var(--bgcolor_container);
+    padding: 55px 35px 30px;
+    border-radius: 25px;
+    position: relative;
+}
+.container img{
+    position: absolute;
+    top: -50px;
+    left: calc(50% - 50px);
+    height: 100px;
+    border-radius: 50%;
+}
+.container #login-img{
+    position: absolute;
+    top: -80px;
+    left: calc(50% - 70px);
+    height: 140px;
+    border-radius: 50%;
+    background: var(--bgcolor_container);
+    opacity: 0.95;
+}
+
+.container .title{
+    font-size: 25px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-align: center;
+    position: relative;
+}
+.container hr{
+    margin-top: 8px;
+    width: 50%;
+    margin: auto;
+    border-bottom: 2px solid var(--themecol);
+}
+.container form .user-details{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.error-box{
+    margin: 17px 0 0;
+    text-align: center;
+    font-weight: bold;
+}
+
+.error-box .alert-danger{
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+    padding: 9px;
+}
+
+.error-box .alert-success{
+    color: #1d3b05;
+    background-color: #d3f1cb;
+    border-color: #f5c6cb;
+    padding: 9px;
+}
+
+.error-box .alert-info{
+    color: #063149;
+    background-color: #bbebf0;
+    border-color: #f5c6cb;
+    padding: 9px;
+}
+
+form .user-details .input-box{
+    width: calc(100%/2 - 10px);
+    margin: 20px 0 12px 0;
+}
+
+.user-details .input-box .details{
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+.user-details .input-box input{
+    height: 45px;
+    width: 100%;
+    border-radius: 5px;
+    outline: none;
+    padding-left: 10px;
+    border: 1px solid var(--normal_border);
+    border-bottom-width: 2px;
+    font-size: 16px;
+}
+
+.user-details .input-box input:focus{
+    border-color: var(--themecol);
+}
+
+.user-details .input-box input:not(:placeholder-shown):invalid{
+    border-color: var(--danger);
+}
+.user-details .input-box input:not(:placeholder-shown):valid{
+    border-color: var(--success);
+}
+
+form .button{
+    height: 45px;
+    margin: 20px 0 12px;
+}
+form .button input{
+    height: 100%;
+    width: 100%;
+    outline: none;
+    background: var(--themecol);
+    color: #fff;
+    border-radius: 7px;
+    border: none;
+    font-size: 18px;
+    letter-spacing: 1px;
+}
+form .button input:hover{
+    background: var(--secondarycol);
+    cursor: pointer;
+}
+
+form .links{
+    text-align: center;
+    width: 100%;
+    letter-spacing: 1px;
+}
+form .links h6{
+    font-weight: 700;
+}
+
+form .links a{
+    color: var(--themecol);
+    text-decoration: none;
+}
+form .links a:hover{
+    color: var(--secondarycol);
+    cursor: pointer;
+    text-decoration: underline;
+}

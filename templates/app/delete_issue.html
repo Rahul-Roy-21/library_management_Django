@@ -1,0 +1,26 @@
+<div class="card card-body">
+
+    <p>Are you sure you want to delete the following ISSUE?</p>
+    <table>
+        <tr>
+            <th>Student</th>
+            <th>Book</th>
+            <th>Date_Issue</th>
+            <th>Status</th>
+        </tr>
+        <tr>
+            <td>{{issue.user.username}}<br>(Email: {{issue.user.email}})</td>
+            <td>{{issue.book.title}}</td>
+            <td>{{issue.date_of_issue}}</td>
+            <td>{{issue.status}}</td>
+        </tr>
+    </table>
+
+    <form action="{% url 'delete_issue' issue.id  %}" method="POST">
+        
+        {% csrf_token %}
+        <a class="btn btn-warning" href="{% url 'home' %}">Cancel</a>
+
+        <input class="btn btn-danger" type="submit" name="Confirm">
+    </form>
+</div>

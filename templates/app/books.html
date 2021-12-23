@@ -1,0 +1,39 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/mainstyles.css' %}">
+<h1>
+    BOOKS STOCK for Librarian, Mr. {{request.user.username}} 
+    <small><a href="{% url 'home' %}">Go Back</a></small>
+</h1>
+<hr>
+
+<form method="get">
+    {{myBookFilter.form.as_p}}
+
+    <button class="btn btn-primary" type="submit">Search</button>
+</form>
+
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Authors</th>
+        <th>Category</th>
+        <th>Date of Publication</th>
+        <th>Published By</th>
+        <th>Num Copies</th>
+    </tr>
+
+    {% for b in books %}
+    <tr>
+        <td>{{b.title}}</td>
+        <td>
+            {% for a in b.author.all %}
+              {{a}}<br>
+            {% endfor %}
+        </td>
+        <td>{{b.category}}</td>
+        <td>{{b.date_of_publication}}</td>
+        <td>{{b.publisher}}</td>
+        <td>{{b.num_copies}}</td>
+    </tr>
+    {% endfor %}
+</table>
